@@ -1,9 +1,10 @@
 cabal-version:      3.0
 
-name:           template
+name:           pr-sync-api
 version:        1.0.0
-homepage:       https://github.com/jappeace/template#readme
-bug-reports:    https://github.com/jappeace/template/issues
+synopsis:       Shared API types for PR gym tracker sync
+homepage:       https://github.com/jappeace/pr-sync-api#readme
+bug-reports:    https://github.com/jappeace/pr-sync-api/issues
 author:         Jappie Klooster
 maintainer:     hi@jappie.me
 copyright:      2025 Jappie Klooster
@@ -18,10 +19,10 @@ extra-doc-files:
 
 source-repository head
   type: git
-  location: https://github.com/jappeace/template
+  location: https://github.com/jappeace/pr-sync-api
 
 common common-options
-  default-extensions: 
+  default-extensions:
       EmptyCase
       FlexibleContexts
       FlexibleInstances
@@ -43,6 +44,9 @@ common common-options
       TypeApplications
       NumericUnderscores
       ImportQualifiedPost
+      TypeOperators
+      DataKinds
+      DeriveAnyClass
 
   ghc-options:
     -O2 -Wall -Werror -Wincomplete-uni-patterns
@@ -51,7 +55,6 @@ common common-options
     -fdefer-diagnostics -Wunused-packages
     -fenable-th-splice-warnings
     -fno-omit-yields
-    -threaded -rtsopts "-with-rtsopts=-N -M7G -T -Iw10"
 
   build-depends:
       base >=4.9.1.0 && <4.22.0
@@ -61,32 +64,11 @@ common common-options
 library
   import: common-options
   exposed-modules:
-      Template
-  other-modules:
-      Paths_template
+      PrSyncApi
   hs-source-dirs:
       src
-
-executable exe
-  import: common-options
-  main-is: Main.hs
-  hs-source-dirs:
-      app
   build-depends:
-      template
-  ghc-options: -Wno-unused-packages
-
-test-suite unit
-  import: common-options
-  type: exitcode-stdio-1.0
-  main-is: Test.hs
-  ghc-options: -Wno-unused-packages
-  other-modules:
-      Paths_template
-  hs-source-dirs:
-      test
-  build-depends:
-      tasty,
-      tasty-hunit,
-      tasty-quickcheck,
-      template
+      aeson
+    , servant
+    , text
+    , time
