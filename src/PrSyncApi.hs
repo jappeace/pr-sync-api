@@ -28,6 +28,7 @@ data HistoryEntry = HistoryEntry
   { historyExercise   :: Text
   , historyWeightKg   :: Double
   , historyRecordedAt :: UTCTime
+  , historyNotes      :: Maybe Text
   }
   deriving stock (Show, Eq, Ord, Generic)
   deriving anyclass (FromJSON, ToJSON)
