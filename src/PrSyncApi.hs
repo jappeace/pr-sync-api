@@ -27,6 +27,7 @@ data CurrentRecord = CurrentRecord
 data HistoryEntry = HistoryEntry
   { historyExercise   :: Text
   , historyWeightKg   :: Double
+  , historyReps       :: Int
   , historyRecordedAt :: UTCTime
   , historyNotes      :: Maybe Text
   }
